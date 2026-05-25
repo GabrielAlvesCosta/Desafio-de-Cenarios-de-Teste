@@ -2,21 +2,18 @@ import pytest, requests
 
 @pytest.fixture(scope='session')
 def api_client():
-
     with requests.Session() as session:
         yield session 
 
 
 @pytest.fixture(scope='function')
 def base_url():
-
     return "https://viacep.com.br/ws/"
 
 
 
 
 def test_cep_valido_retorna_200_e_dados(api_client, base_url):
-
     cep = "01001000"
     url = f"{base_url}{cep}/json/"
     
@@ -32,7 +29,6 @@ def test_cep_valido_retorna_200_e_dados(api_client, base_url):
 
 
 def test_cep_inexistente_retorna_flag_de_erro(api_client, base_url):
-
     cep = "99999999"
     url = f"{base_url}{cep}/json/"
     
@@ -44,7 +40,6 @@ def test_cep_inexistente_retorna_flag_de_erro(api_client, base_url):
 
 
 def test_cep_formato_invalido_retorna_400(api_client, base_url):
-
     cep_invalido = "123"
     url = f"{base_url}{cep_invalido}/json/"
     
@@ -53,7 +48,6 @@ def test_cep_formato_invalido_retorna_400(api_client, base_url):
     assert response.status_code == 400
 
 def test_cep_com_hifen_na_url_retorna_200(api_client, base_url):
-
     cep_com_hifen = "01001-000"
     url = f"{base_url}{cep_com_hifen}/json/"
     
@@ -67,7 +61,6 @@ def test_cep_com_hifen_na_url_retorna_200(api_client, base_url):
 
 
 def test_estrutura_do_json_retornado_schema(api_client, base_url):
-
     cep = "01001000"
     url = f"{base_url}{cep}/json/"
     
@@ -86,7 +79,6 @@ def test_estrutura_do_json_retornado_schema(api_client, base_url):
 
 
 def test_tempo_de_resposta_da_api(api_client, base_url):
-
     cep = "01001000"
     url = f"{base_url}{cep}/json/"
     
