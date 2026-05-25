@@ -1,5 +1,4 @@
-import pytest
-import requests
+import pytest, requests
 
 @pytest.fixture(scope='session')
 def api_client():
